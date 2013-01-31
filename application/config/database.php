@@ -69,8 +69,8 @@ return array(
 
 		'mysql' => array(
 			'driver'   => 'mysql',
-			'host'     => '127.0.0.1:8889',
-			'database' => 'cas3',
+			'host'     => 'localhost',
+			'database' => 'tricket',
 			'username' => 'd0dz',
 			'password' => 'd0dz',
 			'charset'  => 'utf8',

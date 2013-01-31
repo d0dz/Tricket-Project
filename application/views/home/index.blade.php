@@ -1,8 +1,5 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+@layout('layouts.master')
 
-</body>
-</html>
+@section('content')
+	<h2>Home page</h2>
+@endsection
