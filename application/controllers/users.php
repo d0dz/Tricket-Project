@@ -32,6 +32,4 @@ class Users_Controller extends Base_Controller {
 			->with_input();
 		}
 	}
-
-	
 }
