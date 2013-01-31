@@ -10,4 +10,9 @@ class Intercourse extends Basemodel {
 		'credit'=>'required|min:1|max:1',
 		'description'=>'required|min:10|max:1000'
 	);
+
+	public function universitie()
+	{
+		return $this->belongs_to('Universitie');
+	}
 }

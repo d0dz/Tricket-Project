@@ -11,8 +11,9 @@ class Intercourses_Controller extends Base_Controller {
 				->paginate(20, array('title', 'code', 'credit','description','intercourses.id','universities.name'));
 				
 		return View::make('intercourses.index')
-			->with('title', 'รายละเอียดวิชาภายนอกวิทยาลัยบัญฑิตเอซีย')
-			->with('intercourses', $intercourses);
+			->with('title', 'รายละเอียดวิชาภายนอกวิทยาลัยบัญฑิตเอเซีย')
+			->with('intercourses', Intercourse::all());
+
 		} else {
 			return Redirect::to_route('home')
 				->with('message', 'คุณไม่มีสิทธิเข้าใช้ในส่วนนี้');
@@ -37,7 +38,8 @@ class Intercourses_Controller extends Base_Controller {
 				'code'=>Input::get('code'),
 				'title'=>Input::get('title'),
 				'credit'=>Input::get('credit'),
-				'description'=>Input::get('description')
+				'description'=>Input::get('description'),
+				'university_id'=>Input::get('university_id')
 			));
 			return Redirect::to_route('intercourses')
 				->with('message', 'เพิ่มรายวิชาเสร็จสิ้น');

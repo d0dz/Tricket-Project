@@ -7,4 +7,9 @@ class Universitie extends Basemodel {
 	public static $rules = array(
 		'name'=>'required|min:5|max:200',
 	);
+
+	public function intercourses()
+	{
+		return $this->has_many('Intercourse', 'university_id');
+	}
 }
