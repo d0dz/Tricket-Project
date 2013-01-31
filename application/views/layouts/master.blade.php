@@ -10,14 +10,17 @@
 		<div class="navbar navbar-static-top">
 			<div class="navbar-inner">
 				<div class="container">
-
-				<a class="brand" href="#">Transfer</a>
 				<ul class="nav">
 					<li class="active">{{ HTML::link_to_route('home', 'Home') }}</li>
 					@if (!Auth::check())
 					<li>{{ HTML::link_to_route('register', 'Register') }}</li>
 					<li>{{ HTML::link_to_route('login', 'Login') }}</li>
 					@else
+						@if (Auth::user()->role_id == 2)
+							<li>{{ HTML::link_to_route('localcourses', 'Localcourses') }}</li>
+							<li>{{ HTML::link_to_route('intercourses', 'Intercourses') }}</li>
+							<li>{{ HTML::link_to_route('universities', 'University') }}</li>
+						@endif
 						<li>{{ HTML::link_to_route('logout', 'Logout ('.Auth::user()->username.')') }}</li>
 					@endif
 				</ul>

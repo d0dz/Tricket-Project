@@ -1,7 +1,7 @@
 @layout('layouts.master')
 
 @section('content')
-	<h1>ระบบสมัครสมาชิก</h1>
+	<h1>Register</h1>
 
 	@if($errors->has())
 		<div class="alert alert-error">
