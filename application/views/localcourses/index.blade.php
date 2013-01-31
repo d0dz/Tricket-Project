@@ -1,10 +1,15 @@
 @layout ('layouts.master')
 
 @section('content')
-	<h1></h1>
-
+	
 	<table class="table table-hover">
-		<caption><h3>รายวิชาภายในวิทยาลัยบัญฑิตเอเซีย</h3></caption>
+
+		<caption>
+			<h3>รายวิชาภายในวิทยาลัยบัญฑิตเอเซีย</h3>
+			{{ HTML::link('localcourses/new', 'เพิ่มรายวิชาภายในวิทยาลัยบัญฑิตเอเซีย', array('class' => 'btn btn-info')) }}
+			
+		</caption>
+		
 		<thead>
 		<tr>
 			<th>Code</th>

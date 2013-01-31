@@ -4,7 +4,9 @@
 	<h1></h1>
 
 	<table class="table table-hover">
-		<caption><h3>รายวิชาภายนอกวิทยาลัยบัญฑิตเอซีย</h3></caption>
+		<caption><h3>รายวิชาภายนอกวิทยาลัยบัญฑิตเอซีย</h3>
+			{{ HTML::link('intercourses/new', 'เพิ่มรายวิชาภายนอก', array('class' => 'btn btn-info')) }}
+		</caption>
 		<thead>
 		<tr>
 			<th>Code</th>
@@ -15,7 +17,7 @@
 		</tr>
 		</thead>
 	<tbody>
-		@foreach ($intercourses as $intercourse)
+		@foreach ($intercourses->results as $intercourse)
 		<tr>
 			<td>{{ $intercourse->code }}</td>
 			<td>{{ $intercourse->title }}</td>

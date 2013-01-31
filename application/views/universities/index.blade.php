@@ -4,7 +4,9 @@
 	<h1></h1>
 
 	<table class="table table-hover">
-		<caption><h3>รายชื่อมหาวิทยาลัย</h3></caption>
+		<caption><h3>รายชื่อมหาวิทยาลัย</h3>
+			{{ HTML::link('universities/new', 'เพิ่มมหาวิทยาลัย', array('class' => 'btn btn-info')) }}
+		</caption>
 		<thead>
 		<tr>
 			<th>Id</th>

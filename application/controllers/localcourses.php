@@ -16,4 +16,27 @@ class Localcourses_Controller extends Base_Controller {
 				->with('message', 'คุณไม่มีสิทธิเข้าใช้ในส่วนนี้');
 		}
 	}
+
+	public function get_new() {
+		return View::make('localcourses.new')
+			->with('title', 'Add New Localcourses');
+	}
+
+	public function post_create() {
+		$validation = Localcourse::validate(Input::all());
+		if ($validation->passes()) {
+			Localcourse::create(array(
+				'code'=>Input::get('code'),
+				'title'=>Input::get('title'),
+				'credit'=>Input::get('credit'),
+				'description'=>Input::get('description')
+			));
+			return Redirect::to_route('localcourses')
+				->with('message', 'เพิ่มรายวิชาเสร็จสิ้น');
+		} else {
+			return Redirect::to_route('new_localcourses')
+				->with_errors($validation)
+				->with_input();
+		}
+	}
 }

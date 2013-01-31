@@ -38,13 +38,21 @@ Route::get('login', array('as'=>'login', 'uses'=>'users@login'));
 Route::get('logout', array('as'=>'logout', 'uses'=>'users@logout'));
 
 Route::get('localcourses', array('as'=>'localcourses', 'uses'=>'localcourses@index'));
+Route::get('localcourses/new', array('as'=>'new_localcourses', 'uses'=>'localcourses@new'));
 
 Route::get('intercourses', array('as'=>'intercourses', 'uses'=>'intercourses@index'));
+Route::get('intercourses/new', array('as'=>'new_intercourses', 'uses'=>'intercourses@new'));
 
 Route::get('universities', array('as'=>'universities', 'uses'=>'universities@index'));
+Route::get('universities/new', array('as'=>'new_universities', 'uses'=>'universities@new'));
+
 
 Route::post('register', array('before'=>'csrf', 'uses'=>'users@create'));
 Route::post('login', array('before'=>'csrf', 'uses'=>'users@login'));
+
+Route::post('localcourses/create', array('before'=>'csrf','uses'=>'localcourses@create'));
+Route::post('universities/create', array('before'=>'csrf','uses'=>'universities@create'));
+Route::post('intercourses/create', array('before'=>'csrf','uses'=>'intercourses@create'));
 
 
 /*
