@@ -32,4 +32,35 @@ class Users_Controller extends Base_Controller {
 			->with_input();
 		}
 	}
+
+	public function get_login() {
+		return View::make('users.login')
+			->with('title', 'Login เพื่อเข้าสู่การเทียบโอนหย่วยกิต');
+	}
+
+	public function post_login() {
+		$user = array(
+			'username'=>Input::get('username'),
+			'password'=>Input::get('password')
+		);
+
+		if (Auth::attempt($user)) {
+			return Redirect::to_route('home')
+				->with('message', 'คุณเข้าสู่ระบบเทียบโอนเรียบร้อย');
+		} else {
+			return Redirect::to_route('login')
+				->with('message', 'Username or Password ผิด กรุณา Login ใหม่อีกครั้ง')
+				->with_input();
+		}
+	}
+
+	public function get_logout() {
+		if (Auth::check()) {
+			Auth::logout();
+			return Redirect::to_route('login')
+				->with('message', 'คุณออกจากระบบ');
+		} else {
+			return Redirect::to_route('home');
+		}
+	}
 }
