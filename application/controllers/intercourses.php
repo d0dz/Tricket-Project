@@ -8,11 +8,13 @@ class Intercourses_Controller extends Base_Controller {
 		if (Auth::check() && Auth::user()->role_id == 2) {
 			$intercourses = DB::table('intercourses')
 				->join('universities', 'intercourses.university_id', '=', 'universities.id')
-				->paginate(20, array('title', 'code', 'credit','description','intercourses.id','universities.name'));
+				->paginate(20);
+				// ->get(array('title', 'code', 'credit','description','intercourses.id','universities.name'));
+
 				
 		return View::make('intercourses.index')
 			->with('title', 'รายละเอียดวิชาภายนอกวิทยาลัยบัญฑิตเอเซีย')
-			->with('intercourses', Intercourse::all());
+			->with('intercourses', $intercourses);
 
 		} else {
 			return Redirect::to_route('home')

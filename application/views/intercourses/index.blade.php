@@ -17,16 +17,16 @@
 		</tr>
 		</thead>
 	<tbody>
-		{{ var_dump($intercourses)}}
-		@foreach ($intercourses as $intercourse)
+		@foreach ($intercourses->results as $intercourse)
 		<tr>
 			<td>{{ $intercourse->code }}</td>
 			<td>{{ $intercourse->title }}</td>
 			<td>{{ $intercourse->credit }}</td>
 			<td>{{ $intercourse->description }}</td>
-			<td>{{ $intercourse->universitie }}</td>
+			<td>{{ $intercourse->name }}</td>
 		</tr>
 		@endforeach
 	</tbody>
 	</table>
+	{{$intercourses->links()}}
 @endsection
