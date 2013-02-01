@@ -43,6 +43,7 @@ Route::get('localcourses/new', array('as'=>'new_localcourses', 'uses'=>'localcou
 Route::get('localcourse/(:any)/edit', array('as'=>'edit_localcourses', 'uses'=>'localcourses@edit'));
 
 Route::put('localcourse/update', array('uses'=>'localcourses@update'));
+Route::delete('localcourse/delete', array('uses'=>'localcourses@destroy'));
 
 Route::get('intercourses', array('as'=>'intercourses', 'uses'=>'intercourses@index'));
 Route::get('intercourse/(:num)', array('as'=>'intercourse', 'uses'=>'intercourses@view'));
@@ -50,13 +51,14 @@ Route::get('intercourses/new', array('as'=>'new_intercourses', 'uses'=>'intercou
 Route::get('intercourse/(:any)/edit', array('as'=>'edit_intercourses', 'uses'=>'intercourses@edit'));
 
 Route::put('intercourse/update', array('uses'=>'intercourses@update'));
+Route::delete('intercourse/delete', array('uses'=>'intercourses@destroy'));
 
 Route::get('universities', array('as'=>'universities', 'uses'=>'universities@index'));
 Route::get('universities/new', array('as'=>'new_universities', 'uses'=>'universities@new'));
 Route::get('universitie/(:any)/edit', array('as'=>'edit_universities', 'uses'=>'universities@edit'));
 
 Route::put('universitie/update', array('uses'=>'universities@update'));
-
+Route::delete('universitie/delete', array('uses'=>'universities@destroy'));
 
 Route::post('register', array('before'=>'csrf', 'uses'=>'users@create'));
 Route::post('login', array('before'=>'csrf', 'uses'=>'users@login'));

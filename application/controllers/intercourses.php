@@ -91,4 +91,10 @@ class Intercourses_Controller extends Base_Controller {
 				->with('message', 'Intercourse Update Successfully!');
 		}
 	}
+
+	public function delete_destroy() {
+		Intercourse::find(Input::get('id'))->delete();
+		return Redirect::to_route('intercourses')
+			->with('message', 'Intercourse Delete Successfully !');
+	}
 }

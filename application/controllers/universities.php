@@ -55,4 +55,10 @@ class Universities_Controller extends Base_Controller {
 				->with('message', 'University Update Successfully!');
 		}
 	}
+
+	public function delete_destroy() {
+		Universitie::find(Input::get('id'))->delete();
+		return Redirect::to_route('universities')
+			->with('message', 'University Delete Successfully !');
+	}
 }

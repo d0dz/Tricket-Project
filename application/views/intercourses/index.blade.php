@@ -14,6 +14,7 @@
 			<th>Description</th>
 			<th>University</th>
 			<th>Edit</th>
+			<th>Delete</th>
 		</tr>
 		</thead>
 	<tbody>
@@ -25,6 +26,12 @@
 			<td>{{ $intercourse->description }}</td>
 			<td>{{ $intercourse->name }}</td>
 			<td>{{ HTML::link_to_route('edit_intercourses', 'Edit', array($intercourse->id), array('class' => 'btn btn-info')) }}</td>
+			<td>
+				{{ Form::open('intercourse/delete', 'DELETE',array('style'=>'display: inline;')) }}
+				{{ Form::hidden('id', $intercourse->id) }}
+				{{ Form::submit('Delete', array('class'=>'btn btn-info')) }}
+				{{ Form::close() }}
+			</td>
 		</tr>
 		@endforeach
 	</tbody>

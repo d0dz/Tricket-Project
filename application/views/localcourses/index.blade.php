@@ -17,6 +17,7 @@
 			<th>Credit</th>
 			<th>Description</th>
 			<th>Edit</th>
+			<th>Delete</th>
 		</tr>
 		</thead>
 	<tbody>
@@ -27,6 +28,12 @@
 			<td>{{ $localcourse->credit }}</td>
 			<td>{{ $localcourse->description }}</td>
 			<td>{{ HTML::link_to_route('edit_localcourses', 'Edit', array($localcourse->id), array('class' => 'btn btn-info')) }}</td>
+			<td>
+				{{ Form::open('localcourse/delete', 'DELETE',array('style'=>'display: inline;')) }}
+				{{ Form::hidden('id', $localcourse->id) }}
+				{{ Form::submit('Delete', array('class'=>'btn btn-info')) }}
+				{{ Form::close() }}
+			</td>
 		</tr>
 		@endforeach
 	</tbody>

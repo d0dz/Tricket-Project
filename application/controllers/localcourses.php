@@ -72,4 +72,10 @@ class Localcourses_Controller extends Base_Controller {
 				->with('message', 'Localcourse Update Successfully!');
 		}
 	}
+
+	public function delete_destroy() {
+		Localcourse::find(Input::get('id'))->delete();
+		return Redirect::to_route('localcourses')
+			->with('message', 'Localcourse Delete Successfully !');
+	}
 }
