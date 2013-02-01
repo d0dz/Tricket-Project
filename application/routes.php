@@ -38,9 +38,11 @@ Route::get('login', array('as'=>'login', 'uses'=>'users@login'));
 Route::get('logout', array('as'=>'logout', 'uses'=>'users@logout'));
 
 Route::get('localcourses', array('as'=>'localcourses', 'uses'=>'localcourses@index'));
+Route::get('localcourse/(:num)', array('as'=>'localcourse', 'uses'=>'localcourses@view'));
 Route::get('localcourses/new', array('as'=>'new_localcourses', 'uses'=>'localcourses@new'));
 
 Route::get('intercourses', array('as'=>'intercourses', 'uses'=>'intercourses@index'));
+Route::get('intercourse/(:num)', array('as'=>'intercourse', 'uses'=>'intercourses@view'));
 Route::get('intercourses/new', array('as'=>'new_intercourses', 'uses'=>'intercourses@new'));
 
 Route::get('universities', array('as'=>'universities', 'uses'=>'universities@index'));

@@ -51,4 +51,10 @@ class Intercourses_Controller extends Base_Controller {
 				->with_input();
 		}
 	}
+
+	public function get_view($id) {
+		return View::make('intercourses.vew')
+			->with('title', 'รายละเอียดวิชา')
+			->with('intercourse', Intercourse::find($id));
+	}
 }

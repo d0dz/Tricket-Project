@@ -29,7 +29,7 @@ class Universities_Controller extends Base_Controller {
 			return Redirect::to_route('universities')
 				->with('message', 'เพิ่มมหาวิทยาลัยเสร็จสิ้น');
 		} else {
-			return Redirect::to_route('new_universitie')
+			return Redirect::to_route('new_universities')
 				->with_errors($validation)
 				->with_input();
 		}

@@ -19,7 +19,7 @@
 	<tbody>
 		@foreach ($intercourses->results as $intercourse)
 		<tr>
-			<td>{{ $intercourse->code }}</td>
+			<td>{{ HTML::link_to_route('intercourse', $intercourse->code, array($intercourse->id)) }}</td>
 			<td>{{ $intercourse->title }}</td>
 			<td>{{ $intercourse->credit }}</td>
 			<td>{{ $intercourse->description }}</td>

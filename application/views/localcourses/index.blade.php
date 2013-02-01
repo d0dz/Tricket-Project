@@ -19,9 +19,9 @@
 		</tr>
 		</thead>
 	<tbody>
-		@foreach ($localcourses as $localcourse)
+		@foreach ($localcourses->results as $localcourse)
 		<tr>
-			<td>{{ $localcourse->code }}</td>
+			<td>{{ HTML::link_to_route('localcourse', $localcourse->code, array($localcourse->id)) }}</td>
 			<td>{{ $localcourse->title }}</td>
 			<td>{{ $localcourse->credit }}</td>
 			<td>{{ $localcourse->description }}</td>
@@ -29,5 +29,5 @@
 		@endforeach
 	</tbody>
 	</table>
-	
+	{{$localcourses->links()}}
 @endsection
