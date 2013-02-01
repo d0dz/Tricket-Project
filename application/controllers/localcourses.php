@@ -46,4 +46,30 @@ class Localcourses_Controller extends Base_Controller {
 			->with('title', 'รายละเอียดวิชา')
 			->with('localcourse', Localcourse::find($id));
 	}
+
+	public function get_edit($id) {
+		return View::make('localcourses.edit')
+			->with('localcourse', DB::table('localcourses')
+			->where('id', '=', $id)->first())
+			->with('title', 'Edit localcourse'); 
+	}
+
+	public function put_update() {
+		$id = Input::get('id');
+		$validation = Localcourse::validate(Input::all());
+
+		if ($validation->fails()) {
+			return Redirect::to_route('edit_localcourse', $id)
+				->with_errors($validation);
+		} else {
+			Localcourse::update($id, array(
+				'code'=>Input::get('code'),
+				'title'=>Input::get('title'),
+				'credit'=>Input::get('credit'),
+				'description'=>Input::get('description')
+			));
+			return Redirect::to_route('localcourse', $id)
+				->with('message', 'Localcourse Update Successfully!');
+		}
+	}
 }

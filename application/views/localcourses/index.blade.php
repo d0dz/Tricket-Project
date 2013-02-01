@@ -16,6 +16,7 @@
 			<th>Title</th>
 			<th>Credit</th>
 			<th>Description</th>
+			<th>Edit</th>
 		</tr>
 		</thead>
 	<tbody>
@@ -25,6 +26,7 @@
 			<td>{{ $localcourse->title }}</td>
 			<td>{{ $localcourse->credit }}</td>
 			<td>{{ $localcourse->description }}</td>
+			<td>{{ HTML::link_to_route('edit_localcourses', 'Edit', array($localcourse->id), array('class' => 'btn btn-info')) }}</td>
 		</tr>
 		@endforeach
 	</tbody>

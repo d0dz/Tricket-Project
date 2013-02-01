@@ -1,36 +1,37 @@
 @layout('layouts.master')
 
 @section('content')
-	<h3>Add New Localcourses</h3>
-	
-	{{ render('common.localcourse_error') }}
-	
+	<h1>Edit {{ $localcourse->title }}</h1>
 
-	{{ Form::open('localcourses/create', 'POST') }}
+	{{ render('common.localcourse_error') }}
+
+	{{ Form::open('localcourse/update', 'PUT') }}
 
 	{{ Form::token() }}
 
 	<p>
 		{{ Form::label('code', 'รหัสวิชา') }}
-		{{ Form::text('code', Input::old('code'))}}
+		{{ Form::text('code', $localcourse->code ) }}
 	</p>
 
 	<p>
 		{{ Form::label('title', 'ชื่อวิชา') }}
-		{{ Form::text('title', Input::old('title'))}}
+		{{ Form::text('title', $localcourse->title) }}
 	</p>
 
 	<p>
 		{{ Form::label('credit', 'หน่วยกิต') }}
-		{{ Form::text('credit', Input::old('credit'))}}
+		{{ Form::text('credit', $localcourse->credit) }}
 	</p>
 
 	<p>
 		{{ Form::label('description', 'รายละเอียด') }}
-		{{ Form::textarea('description', Input::old('description'))}}
+		{{ Form::textarea('description', $localcourse->description) }}
 	</p>
+
+	{{ Form::hidden('id', $localcourse->id) }}
 	
-	<p>{{ Form::submit('ตกลง', array('class' => 'btn btn-info')) }}</p>
+	<p>{{ Form::submit('Update Localcourse', array('class' => 'btn btn-info')) }}</p>
 
 	{{ Form::close() }}
 @endsection

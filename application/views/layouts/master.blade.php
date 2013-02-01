@@ -22,12 +22,13 @@
 							<li>{{ HTML::link_to_route('universities', 'University') }}</li>
 						@endif
 						<li>{{ HTML::link_to_route('logout', 'Logout ('.Auth::user()->username.')') }}</li>
-						<li><form class="form-search">
-						<input type="text" class="input-medium search-query">
-						<button type="submit" class="btn">Search</button>
-						</form></li>
 					@endif
 				</ul>
+
+				<form class="navbar-form pull-left">
+					<input type="text" class="span2">
+					<button type="submit" class="btn">Search</button>
+				</form>
 				</div>
 			</div>
 		</div>

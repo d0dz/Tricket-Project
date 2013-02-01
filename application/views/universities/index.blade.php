@@ -11,6 +11,7 @@
 		<tr>
 			<th>Id</th>
 			<th>Description</th>
+			<th>Edit</th>
 		</tr>
 		</thead>
 	<tbody>
@@ -18,6 +19,7 @@
 		<tr>
 			<td>{{ $universitie->id }}</td>
 			<td>{{ $universitie->name }}</td>
+			<td>{{ HTML::link_to_route('edit_universities', 'Edit', array($universitie->id), array('class' => 'btn btn-info' )) }}</td>
 		</tr>
 		@endforeach
 	</tbody>

@@ -34,4 +34,25 @@ class Universities_Controller extends Base_Controller {
 				->with_input();
 		}
 	}
+
+	public function get_edit($id) {
+		return View::make('universities.edit')
+			->with('universitie', Universitie::find($id))
+			->with('title', 'Edit University');
+	}
+
+	public function put_update() {
+		$id = Input::get('id');
+		$validation = Universitie::validate(Input::all());
+
+		if ($validation->fails()) {
+			return Redirect::to_route('edit_universities', $id)
+				->with_errors($validation);
+		} else {
+			Universitie::update($id, array(
+				'name'=>Input::get('name')));
+			return Redirect::to_route('universities', $id)
+				->with('message', 'University Update Successfully!');
+		}
+	}
 }
