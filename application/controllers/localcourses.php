@@ -59,7 +59,7 @@ class Localcourses_Controller extends Base_Controller {
 		$validation = Localcourse::validate(Input::all());
 
 		if ($validation->fails()) {
-			return Redirect::to_route('edit_localcourse', $id)
+			return Redirect:: to_route('edit_localcourse', $id)
 				->with_errors($validation);
 		} else {
 			Localcourse::update($id, array(
@@ -77,5 +77,33 @@ class Localcourses_Controller extends Base_Controller {
 		Localcourse::find(Input::get('id'))->delete();
 		return Redirect::to_route('localcourses')
 			->with('message', 'Localcourse Delete Successfully !');
+	}
+
+	public function get_results($keyword) {
+		return View::make('localcourses.results')
+			->with('title', 'ค้นหารายวิชาในวิทยาลัยบัณฑิตเอเซีย')
+			->with('localcourses', Localcourse::search($keyword));
+	}
+
+	public function post_search() {
+		$keyword = Input::get('keyword');
+	 	
+		if (empty($keyword)) {
+			return Redirect::to_route('home')
+				->with('message', 'ไม่พบการค้นหา');
+		}
+
+		$localresults = DB::table('localcourses')
+								->where('title','LIKE', '%' .$keyword. '%')
+								->or_where('code','LIKE', '%' .$keyword. '%')
+								->get();
+		$interresults = DB::table('intercourses')
+								->where('title','LIKE', '%' .$keyword. '%')
+								->or_where('code','LIKE', '%' .$keyword. '%')
+								->get();
+		return View::make('localcourses.results')
+				->with('title','Search Result')
+				->with('localcourses',$localresults)
+				->with('intercourses',$interresults);
 	}
 }

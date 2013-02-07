@@ -11,4 +11,11 @@
 			</p>
 
 			{{ HTML::link('intercourses', 'back', array('class' => 'btn btn-info')) }}
+
+			{{ HTML::link_to_route('edit_intercourses', 'Edit', array($intercourse->id), array('class' => 'btn btn-info')) }}
+
+			{{ Form::open('intercourse/delete', 'DELETE',array('style'=>'display: inline;')) }}
+			{{ Form::hidden('id', $intercourse->id) }}
+			{{ Form::submit('Delete', array('class'=>'btn btn-info')) }}
+			{{ Form::close() }}
 @endsection

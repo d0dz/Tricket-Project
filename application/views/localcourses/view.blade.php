@@ -9,4 +9,11 @@
 			<small>อัพเดทวันที่ {{ $localcourse->updated_at}}</small>
 			</p>
 			{{ HTML::link('localcourses', 'back', array('class' => 'btn btn-info')) }}
+
+			{{ HTML::link_to_route('edit_localcourses', 'Edit', array($localcourse->id), array('class' => 'btn btn-info')) }}
+			
+			{{ Form::open('localcourse/delete', 'DELETE',array('style'=>'display: inline;')) }}
+			{{ Form::hidden('id', $localcourse->id) }}
+			{{ Form::submit('Delete', array('class'=>'btn btn-info')) }}
+			{{ Form::close() }}
 @endsection

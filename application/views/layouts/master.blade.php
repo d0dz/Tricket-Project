@@ -3,6 +3,7 @@
 <head>
 	<title>{{ $title }}</title>
 	{{ HTML::style('/css/bootstrap.min.css') }}
+	{{ HTML::script('/js/application.js') }}
 </head>
 <body>
 	<div class="wrap">
@@ -20,15 +21,18 @@
 							<li>{{ HTML::link_to_route('localcourses', 'Localcourses') }}</li>
 							<li>{{ HTML::link_to_route('intercourses', 'Intercourses') }}</li>
 							<li>{{ HTML::link_to_route('universities', 'University') }}</li>
+							{{ Form::open('localcourses/search', 'POST', array('class'=>'navbar-form pull-right')) }}
+							{{ Form::token() }}
+							{{ Form::text('keyword', '', array('id'=>'keyword')) }}
+							{{ Form::submit('Search') }}
+							{{ Form::close() }}
 						@endif
 						<li>{{ HTML::link_to_route('logout', 'Logout ('.Auth::user()->username.')') }}</li>
 					@endif
 				</ul>
 
-				<form class="navbar-form pull-left">
-					<input type="text" class="span2">
-					<button type="submit" class="btn">Search</button>
-				</form>
+
+
 				</div>
 			</div>
 		</div>
