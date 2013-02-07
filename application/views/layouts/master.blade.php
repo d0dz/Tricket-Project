@@ -21,7 +21,7 @@
 							<li>{{ HTML::link_to_route('localcourses', 'Localcourses') }}</li>
 							<li>{{ HTML::link_to_route('intercourses', 'Intercourses') }}</li>
 							<li>{{ HTML::link_to_route('universities', 'University') }}</li>
-							{{ Form::open('localcourses/search', 'POST', array('class'=>'navbar-form pull-right')) }}
+							{{ Form::open('search', 'POST', array('class'=>'navbar-form pull-right')) }}
 							{{ Form::token() }}
 							{{ Form::text('keyword', '', array('id'=>'keyword')) }}
 							{{ Form::submit('Search') }}

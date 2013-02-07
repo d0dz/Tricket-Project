@@ -69,7 +69,7 @@ Route::post('universities/create', array('before'=>'csrf','uses'=>'universities@
 Route::post('intercourses/create', array('before'=>'csrf','uses'=>'intercourses@create'));
 
 
-Route::post('localcourses/search', array('uses'=>'localcourses@search'));
+Route::post('search', array('uses'=>'localcourses@search'));
 
 
 /*

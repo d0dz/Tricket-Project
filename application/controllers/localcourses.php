@@ -94,16 +94,20 @@ class Localcourses_Controller extends Base_Controller {
 		}
 
 		$localresults = DB::table('localcourses')
-								->where('title','LIKE', '%' .$keyword. '%')
-								->or_where('code','LIKE', '%' .$keyword. '%')
-								->get();
+			->where('title','LIKE', '%' .$keyword. '%')
+			->or_where('code','LIKE', '%' .$keyword. '%')
+			->get();
+			
 		$interresults = DB::table('intercourses')
-								->where('title','LIKE', '%' .$keyword. '%')
-								->or_where('code','LIKE', '%' .$keyword. '%')
-								->get();
+			->join('universities', 'intercourses.university_id', '=', 'universities.id')
+			->where('title','LIKE', '%' .$keyword. '%')
+			->or_where('code','LIKE', '%' .$keyword. '%')
+			->get();
+
 		return View::make('localcourses.results')
-				->with('title','Search Result')
-				->with('localcourses',$localresults)
-				->with('intercourses',$interresults);
+			->with('title','Search Result')
+			->with('localcourses',$localresults)
+			->with('intercourses',$interresults);
+			
 	}
 }
