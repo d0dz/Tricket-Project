@@ -14,38 +14,78 @@
 			{{ $errors->first('description', '<li>:message</li>') }}
 		</div>
 	@endif
+	<div class="row">
+	  <div class="span6">
+	  	{{ Form::open('intercourses/create', 'POST', array('id'=>'new-intercourse')) }}
 
-	{{ Form::open('intercourses/create', 'POST') }}
+		{{ Form::token() }}
 
-	{{ Form::token() }}
+		<P>
+			{{ Form::label('university_id', 'เลือกมหาวิทยาลัย') }}
+			{{ Form::select('university_id', $universities) }}
+			
+		</p>
 
-	<P>
-		{{ Form::label('university_id', 'เลือกมหาวิทยาลัย') }}
-		{{ Form::select('university_id', $universities) }}
+		<p>
+			{{ Form::label('code', 'รหัสวิชา') }}
+			{{ Form::text('code', Input::old('code'))}}
+		</p>
+
+		<p>
+			{{ Form::label('title', 'ชื่อวิชา') }}
+			{{ Form::text('title', Input::old('title'))}}
+		</p>
+
+		<p>
+			{{ Form::label('credit', 'หน่วยกิต') }}
+			{{ Form::text('credit', Input::old('credit'))}}
+		</p>
+
+		<p>
+			{{ Form::label('description', 'รายละเอียด') }}
+			{{ Form::textarea('description', Input::old('description'))}}
+		</p>
 		
-	</p>
+		<p>{{ Form::submit('ตกลง', array('class' => 'btn btn-info')) }}</p>
 
-	<p>
-		{{ Form::label('code', 'รหัสวิชา') }}
-		{{ Form::text('code', Input::old('code'))}}
-	</p>
+		{{ Form::close() }}
+	  </div>
 
-	<p>
-		{{ Form::label('title', 'ชื่อวิชา') }}
-		{{ Form::text('title', Input::old('title'))}}
-	</p>
+	  <div class="span6">
+	  <div id="course-selection">
 
-	<p>
-		{{ Form::label('credit', 'หน่วยกิต') }}
-		{{ Form::text('credit', Input::old('credit'))}}
-	</p>
+	  </div>
+	  	<!-- Button to trigger modal -->
+	<a href="#myModal" role="button" class="btn" data-toggle="modal">Manage Course</a>
+	 
+	<!-- Modal -->
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">Modal header</h3>
+	  </div>
+	  <div class="modal-body">
+	   	<div>
+	   		{{ Form::input('text','','', array('id'=>'local-search-text')) }}
+		   	{{ Form::submit('ค้นหา', array('class'=>'btn','id'=>'local-search-btn'))}}
+	   	</div>
+	   	<div id="local-search-results">
 
-	<p>
-		{{ Form::label('description', 'รายละเอียด') }}
-		{{ Form::textarea('description', Input::old('description'))}}
-	</p>
+	   	</div>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	  </div>
+	</div>
+
+	  </div>
 	
-	<p>{{ Form::submit('ตกลง', array('class' => 'btn btn-info')) }}</p>
+		
 
-	{{ Form::close() }}
+	</div>
+
+	
+
+
+
 @endsection

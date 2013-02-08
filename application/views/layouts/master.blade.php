@@ -3,7 +3,11 @@
 <head>
 	<title>{{ $title }}</title>
 	{{ HTML::style('/css/bootstrap.min.css') }}
+	
+	{{ HTML::script('/js/jquery.min.js') }}
+	{{ HTML::script('/js/bootstrap.min.js') }}
 	{{ HTML::script('/js/application.js') }}
+
 </head>
 <body>
 	<div class="wrap">

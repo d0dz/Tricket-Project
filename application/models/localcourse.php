@@ -11,7 +11,7 @@ class Localcourse extends Basemodel {
 		'description'=>'required|min:10|max:1000'
 	);
 
-	public static function search($keyword) {
-		return static::where('title', 'LIKE', '%' .$keyword. '%');
-	}
+// 	public static function search($keyword) {
+// 		return static::where('title', 'LIKE', '%' .$keyword. '%');
+// 	}
 }

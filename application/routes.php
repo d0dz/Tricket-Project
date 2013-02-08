@@ -32,6 +32,8 @@
 |
 */
 
+Route::controller('Api');
+
 Route::get('/', array('as'=>'home', 'uses'=>'transfers@index'));
 Route::get('register', array('as'=>'register', 'uses'=>'users@new'));
 Route::get('login', array('as'=>'login', 'uses'=>'users@login'));
@@ -57,6 +59,7 @@ Route::delete('intercourse/delete', array('uses'=>'intercourses@destroy'));
 Route::get('universities', array('as'=>'universities', 'uses'=>'universities@index'));
 Route::get('universities/new', array('as'=>'new_universities', 'uses'=>'universities@new'));
 Route::get('universitie/(:any)/edit', array('as'=>'edit_universities', 'uses'=>'universities@edit'));
+Route::get('transfers_search', array('as'=>'transfers_search', 'uses'=>'transfers@search'));
 
 Route::put('universitie/update', array('uses'=>'universities@update'));
 Route::delete('universitie/delete', array('uses'=>'universities@destroy'));
@@ -70,6 +73,8 @@ Route::post('intercourses/create', array('before'=>'csrf','uses'=>'intercourses@
 
 
 Route::post('search', array('uses'=>'localcourses@search'));
+
+
 
 
 /*

@@ -23,6 +23,8 @@ class Intercourses_Controller extends Base_Controller {
 	}
 
 	public function get_new() {
+
+
 		$universities = Universitie::all();
 		$universities_data = array();
 		foreach ($universities as $universities){
@@ -34,15 +36,30 @@ class Intercourses_Controller extends Base_Controller {
 	}
 
 	public function post_create() {
+
 		$validation = Intercourse::validate(Input::all());
 		if ($validation->passes()) {
-			Intercourse::create(array(
+			
+			$inter = Intercourse::create(array(
 				'code'=>Input::get('code'),
 				'title'=>Input::get('title'),
 				'credit'=>Input::get('credit'),
 				'description'=>Input::get('description'),
 				'university_id'=>Input::get('university_id')
-			));
+			));	
+
+			$mapid = Input::get('mapid', array());
+
+			foreach ($mapid as $id) {
+				DB::table('crossmapping')->insert(
+						array(
+							'inter_id' => $inter->id,
+							'local_id' => $id
+							)
+					);
+			}
+			
+
 			return Redirect::to_route('intercourses')
 				->with('message', 'เพิ่มรายวิชาเสร็จสิ้น');
 		} else {
@@ -94,6 +111,7 @@ class Intercourses_Controller extends Base_Controller {
 
 	public function delete_destroy() {
 		Intercourse::find(Input::get('id'))->delete();
+		DB::table('crossmapping')->where('inter_id','=',Input::get('id'))->delete();
 		return Redirect::to_route('intercourses')
 			->with('message', 'Intercourse Delete Successfully !');
 	}
