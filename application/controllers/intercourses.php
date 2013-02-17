@@ -11,7 +11,6 @@ class Intercourses_Controller extends Base_Controller {
 				->paginate(30, array('title', 'code', 'credit','description','intercourses.id','universities.name'));
 				// ->get(array('title', 'code', 'credit','description','intercourses.id','universities.name'));
 
-				
 		return View::make('intercourses.index')
 			->with('title', 'รายละเอียดวิชาภายนอกวิทยาลัยบัญฑิตเอเซีย')
 			->with('intercourses', $intercourses);
@@ -51,10 +50,10 @@ class Intercourses_Controller extends Base_Controller {
 			$mapid = Input::get('mapid', array());
 
 			foreach ($mapid as $id) {
-				DB::table('crossmapping')->insert(
+				DB::table('course_mapping')->insert(
 						array(
-							'inter_id' => $inter->id,
-							'local_id' => $id
+							'intercourse_id' => $inter->id,
+							'localcourse_id' => $id
 							)
 					);
 			}
@@ -69,11 +68,12 @@ class Intercourses_Controller extends Base_Controller {
 		}
 	}
 
-	public function get_view($id) {
-		return View::make('intercourses.view')
-			->with('title', 'รายละเอียดวิชา')
-			->with('intercourse', Intercourse::find($id));
-	}
+	public function get_view($id = null) {
+	 	return View::make('intercourses.view')
+	        ->with('title', 'รายละเอียดวิชา')
+	        ->with('intercourse',Intercourse::find($id));
+}
+	
 
 	public function get_edit($id) {
 		$intercourses = DB::table('intercourses')
@@ -111,7 +111,7 @@ class Intercourses_Controller extends Base_Controller {
 
 	public function delete_destroy() {
 		Intercourse::find(Input::get('id'))->delete();
-		DB::table('crossmapping')->where('inter_id','=',Input::get('id'))->delete();
+		DB::table('course_mapping')->where('intercourse_id','=',Input::get('id'))->delete();
 		return Redirect::to_route('intercourses')
 			->with('message', 'Intercourse Delete Successfully !');
 	}

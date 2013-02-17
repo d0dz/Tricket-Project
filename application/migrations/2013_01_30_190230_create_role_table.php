@@ -12,6 +12,7 @@ class Create_Role_Table {
 		Schema::create('role', function($table){
 			$table->integer('role_id');
 			$table->string('role_name',50);
+			
 		});
 	}
 

@@ -28,7 +28,7 @@
 							{{ Form::open('search', 'POST', array('class'=>'navbar-form pull-right')) }}
 							{{ Form::token() }}
 							{{ Form::text('keyword', '', array('id'=>'keyword')) }}
-							{{ Form::submit('Search') }}
+							{{ Form::submit('Search', array('class'=>'btn')) }}
 							{{ Form::close() }}
 						@endif
 						<li>{{ HTML::link_to_route('logout', 'Logout ('.Auth::user()->username.')') }}</li>

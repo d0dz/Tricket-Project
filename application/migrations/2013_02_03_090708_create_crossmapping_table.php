@@ -9,9 +9,11 @@ class Create_Crossmapping_Table {
 	 */
 	public function up()
 	{
-		Schema::create('crossmapping', function($table) {
-			$table->integer('local_id');
-			$table->integer('inter_id');
+		Schema::create('course_mapping', function($table) {
+			$table->increments('id');
+			$table->integer('localcourse_id');
+			$table->integer('intercourse_id');
+			$table->timestamps();
 		});
 	}
 
@@ -22,7 +24,7 @@ class Create_Crossmapping_Table {
 	 */
 	public function down()
 	{
-		Schema::drop('crossmapping');
+		Schema::drop('course_mapping');
 	}
 
 }

@@ -13,6 +13,11 @@ class Intercourse extends Basemodel {
 
 	public function universitie()
 	{
-		return $this->belongs_to('Universitie');
+		return $this->belongs_to('Universitie','university_id');
+	}
+
+	public function transferable_courses()
+	{
+		return $this->has_many_and_belongs_to('Localcourse','course_mapping');
 	}
 }

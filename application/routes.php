@@ -59,7 +59,9 @@ Route::delete('intercourse/delete', array('uses'=>'intercourses@destroy'));
 Route::get('universities', array('as'=>'universities', 'uses'=>'universities@index'));
 Route::get('universities/new', array('as'=>'new_universities', 'uses'=>'universities@new'));
 Route::get('universitie/(:any)/edit', array('as'=>'edit_universities', 'uses'=>'universities@edit'));
+
 Route::get('transfers_search', array('as'=>'transfers_search', 'uses'=>'transfers@search'));
+Route::get('transfers/detail/(:num)', array('as'=>'transfers/detail', 'uses'=>'transfers@detail'));
 
 Route::put('universitie/update', array('uses'=>'universities@update'));
 Route::delete('universitie/delete', array('uses'=>'universities@destroy'));

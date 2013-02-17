@@ -14,10 +14,13 @@ class Transfers_Controller extends Base_Controller {
 			->with('title', 'ระบบเทียบโอนหน่วยกิต');
 	}
 
-	public function get_detail($id) {
-
+	public function get_detail($id = null) {
+		return View::make('transfers.detail')
+			->with('title', 'รายละเอียดวิชา')
+			->with('intercourse', Intercourse::find($id));
 
 	}
+
 
 	public function get_search() {
 		return View::make('transfers.results')

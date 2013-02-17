@@ -11,7 +11,7 @@ class Create_Universities_Table {
 	{
 		Schema::create('universities', function($table){
 			$table->increments('id');
-			$table->text('university_name');
+			$table->text('name');
 			$table->timestamps();
 		});
 	}

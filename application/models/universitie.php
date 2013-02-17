@@ -8,8 +8,7 @@ class Universitie extends Basemodel {
 		'name'=>'required|min:5|max:200',
 	);
 
-	public function intercourses()
-	{
-		return $this->has_many('Intercourse', 'university_id');
+	public function intercourses() {
+		return $this->has_many('Intercourse');
 	}
 }

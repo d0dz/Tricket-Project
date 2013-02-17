@@ -12,7 +12,7 @@ class Create_Users_Table {
 		Schema::create('users', function($table) {
 			$table->increments('id');
 			$table->string('username',16);
-			$table->string('password',10);
+			$table->string('password',100);
 			$table->integer('role_id');
 			$table->timestamps();
 		});

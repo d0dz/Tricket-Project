@@ -11,7 +11,7 @@ class Create_Intercourses_Table {
 	{
 		Schema::create('intercourses', function($table){
 			$table->increments('id');
-			$table->integer('code');
+			$table->text('code');
 			$table->text('title');
 			$table->integer('credit');
 			$table->text('description');
@@ -27,7 +27,7 @@ class Create_Intercourses_Table {
 	 */
 	public function down()
 	{
-		Schema::drop('intercourse');
+		Schema::drop('intercourses');
 	}
 
 }
