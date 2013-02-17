@@ -20,4 +20,11 @@ class Intercourse extends Basemodel {
 	{
 		return $this->has_many_and_belongs_to('Localcourse','course_mapping');
 	}
+
+	public function coursemapping()
+	{
+		return $this->has_many('Coursemapping');
+	}
+
+	
 }

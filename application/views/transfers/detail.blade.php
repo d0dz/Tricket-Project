@@ -7,8 +7,10 @@
 			หน่วยกิต :: {{ $intercourse->credit }}</br>
 			คำอธิบายรายวิชา :: {{ $intercourse->description }}</br>
 			มหาวิทยาลัย :: {{ $intercourse->universitie->name }}</br>
-			<small>อัพเดทวันที่ {{ $intercourse->updated_at}}</small>
+			
 			</p>
+		
+		{{ HTML::link('transfers_search', 'back', array('class' => 'btn btn-info')) }}
 		</br>
 <h1>รายวิชาที่สามารถเทียบโอนได้</h1>
 </br>
@@ -25,25 +27,24 @@
 			<th>Title</th>
 			<th>Credit</th>
 			<th>Description</th>
+			<th>Add</th>
 		
 		</tr>
 		</thead>
 	<tbody>
-		@foreach ($intercourse->transferable_courses as $localcourse)
-				<tr>
-			<td>{{ $localcourse->code }}</td>
-			<td>{{ $localcourse->title }}</td>
-			<td>{{ $localcourse->credit }}</td>
-			<td>{{ $localcourse->description }}</td>
-			
+		@foreach ($intercourse->coursemapping as $course_mapping)
+
+
+	
+		<tr>
+			<td>{{ $course_mapping->localcourse->code }}</td>
+			<td>{{ $course_mapping->localcourse->title }}</td>
+			<td>{{ $course_mapping->localcourse->credit }}</td>
+			<td>{{ $course_mapping->localcourse->description }}</td>
+			<td>{{ HTML::link_to_route('add_transferlist', 'Add', array($course_mapping->id), array('class' => 'btn btn-info')) }} 
 			
 		</tr>
-			@endforeach
+		@endforeach
 	</tbody>
 	</table>
-
-			
-
-
-
 @endsection

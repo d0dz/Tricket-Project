@@ -30,8 +30,12 @@
 							{{ Form::text('keyword', '', array('id'=>'keyword')) }}
 							{{ Form::submit('Search', array('class'=>'btn')) }}
 							{{ Form::close() }}
-						@endif
+							<li>{{ HTML::link_to_route('logout', 'Logout ('.Auth::user()->username.')') }}
+						@else
+
+						<li>{{ HTML::link_to_route('transferlist', 'Tranferslist')}}</li>
 						<li>{{ HTML::link_to_route('logout', 'Logout ('.Auth::user()->username.')') }}</li>
+						@endif
 					@endif
 				</ul>
 

@@ -1,6 +1,6 @@
 <?php
 
-class Create_Localcourses_Table {
+class Create_User_Mapping_Table {
 
 	/**
 	 * Make changes to the database.
@@ -9,12 +9,10 @@ class Create_Localcourses_Table {
 	 */
 	public function up()
 	{
-		Schema::create('localcourses', function($table) {
+		Schema::create('user_mapping', function($table) {
 			$table->increments('id');
-			$table->text('code');
-			$table->text('title');
-			$table->integer('credit');
-			$table->text('description');
+			$table->integer('user_id');
+			$table->integer('coursemapping_id');
 			$table->timestamps();
 		});
 	}
@@ -26,7 +24,7 @@ class Create_Localcourses_Table {
 	 */
 	public function down()
 	{
-		Schema::drop('localcourses');
+		Schema::drop('user_mapping');
 	}
 
 }

@@ -63,6 +63,11 @@ Route::get('universitie/(:any)/edit', array('as'=>'edit_universities', 'uses'=>'
 Route::get('transfers_search', array('as'=>'transfers_search', 'uses'=>'transfers@search'));
 Route::get('transfers/detail/(:num)', array('as'=>'transfers/detail', 'uses'=>'transfers@detail'));
 
+Route::get('transferlist', array('as'=>'transferlist', 'uses'=>'users@transferlist'));
+Route::get('transferlist/add/(:num)', array('as'=>'add_transferlist', 'uses'=>'users@transferlistadd'));
+Route::delete('transferlist/delete', array('uses'=>'users@destroy'));
+
+
 Route::put('universitie/update', array('uses'=>'universities@update'));
 Route::delete('universitie/delete', array('uses'=>'universities@destroy'));
 
@@ -77,6 +82,7 @@ Route::post('intercourses/create', array('before'=>'csrf','uses'=>'intercourses@
 Route::post('search', array('uses'=>'localcourses@search'));
 
 
+Route::get('transfer_doc', array('as'=>'gen_transfer_doc','uses' => 'transfers@generate'));
 
 
 /*

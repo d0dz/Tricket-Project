@@ -40,4 +40,7 @@
 	<p>{{ Form::submit('Update Intercourse', array('class' => 'btn btn-info')) }}</p>
 
 	{{ Form::close() }}
+
+
+
 @endsection

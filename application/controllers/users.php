@@ -63,4 +63,27 @@ class Users_Controller extends Base_Controller {
 			return Redirect::to_route('home');
 		}
 	}
+
+	public function get_transferlist() {
+		return View::make('users.transferlist')
+			->with('title', 'วิชาที่จะเทียบโอน');
+
+	}
+
+	public function get_transferlistadd($course_mapping_id){
+		Usermapping::create(array(
+				'coursemapping_id'=>$course_mapping_id,
+				'user_id'=>Auth::user()->id
+			));
+
+		return Redirect::to_route('transfers_search')
+				->with('message', 'เพิ่มเรียบร้อย');
+	}
+
+	public function delete_destroy() {
+		
+		DB::table('user_mapping')->where('id','=',Input::get('id'))->delete();
+		return Redirect::to_route('transferlist')
+			->with('message', 'Delete Successfully !');
+	}
 }
