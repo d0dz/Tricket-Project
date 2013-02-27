@@ -14,7 +14,7 @@
 				
 			</div>
 			<div class="span2">
-				วบท. 84-1
+				วบอ. 84-1
 			</div>
 		</div>
 		<CENTER>

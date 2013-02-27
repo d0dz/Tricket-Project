@@ -14,13 +14,17 @@ class Api_Controller extends Base_Controller
 	{
 		$keyword = Input::get('keyword');
 
-		$interresults = DB::table('intercourses')
-			->join('universities', 'intercourses.university_id', '=', 'universities.id')
-			->where('title','LIKE', '%' .$keyword. '%')
+		$interresults = Intercourse::with('universitie')->where('title','LIKE', '%' .$keyword. '%')
 			->or_where('code','LIKE', '%' .$keyword. '%')
 			->get();
 
-		return Response::json($interresults);
+		// $interresults = DB::table('intercourses')
+		// 	->join('universities', 'intercourses.university_id', '=', 'universities.id')
+		// 	->where('title','LIKE', '%' .$keyword. '%')
+		// 	->or_where('code','LIKE', '%' .$keyword. '%')
+		// 	->get();
+
+		return Response::eloquent($interresults);
 	}
 
 	public function post_searchlocalcourse()

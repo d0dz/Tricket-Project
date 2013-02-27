@@ -35,26 +35,22 @@ class Transfers_Controller extends Base_Controller {
 				->with('message', 'ไม่พบการค้นหา');
 		}
 
-		$interresults = DB::table('intercourses')
-			->join('universities', 'intercourses.university_id', '=', 'universities.id')
-			->where('title','LIKE', '%' .$keyword. '%')
-			->or_where('code','LIKE', '%' .$keyword. '%')
-			->get();
+		$interresults = Intercourse::where('title','LIKE', '%' .$keyword. '%')
+			->or_where('code','LIKE', '%' .$keyword. '%');
+
+		// DB::table('intercourses')
+		// 	->join('universities', 'intercourses.university_id', '=', 'universities.id')
+		// 	->where('title','LIKE', '%' .$keyword. '%')
+		// 	->or_where('code','LIKE', '%' .$keyword. '%')
+		// 	->get();
 
 		return View::make('transfers.results')
 			->with('title','Search Result')
-			->with('intercourses',$interresults);
-			
+			->with('intercourses',$interresults);	
 	}
-
 
 	public function get_generate()
 	{
-		
-
 		return View::make('transfers.generatedoc');
 	}
-
-
-
 }
