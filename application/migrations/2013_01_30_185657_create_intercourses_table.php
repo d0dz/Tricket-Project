@@ -12,10 +12,8 @@ class Create_Intercourses_Table {
 		Schema::create('intercourses', function($table){
 			$table->increments('id');
 			$table->text('code');
-			$table->text('title');
-			$table->integer('credit');
-			$table->text('description');
 			$table->integer('university_id');
+			$table->integer('approve');
 			$table->timestamps();
 		});
 	}

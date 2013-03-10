@@ -3,10 +3,10 @@
 @section('content')
 <p></br>
 	
-			ชื่อวิชา :: {{ $intercourse->title}}</br>
+			ชื่อวิชา :: {{ $intercourse->intercoursedetail[0]->title}}</br>
 			รหัสวิชา :: {{ $intercourse->code }}</br>
-			หน่วยกิต :: {{ $intercourse->credit }}</br>
-			คำอธิบายรายวิชา :: {{ $intercourse->description }}</br>
+			หน่วยกิต :: {{ $intercourse->intercoursedetail[0]->credit }}</br>
+			คำอธิบายรายวิชา :: {{ $intercourse->intercoursedetail[0]->description }}</br>
 			มหาวิทยาลัย :: {{ $intercourse->universitie->name }}</br>
 			
 			</p>
@@ -35,7 +35,7 @@
 	<tbody>
 		@foreach ($intercourse->coursemapping as $course_mapping)
 
-
+		@if($course_mapping->approve==1)
 	
 		<tr>
 			<td>{{ $course_mapping->localcourse->code }}</td>
@@ -45,6 +45,7 @@
 			<td>{{ HTML::link_to_route('add_transferlist', 'Add', array($course_mapping->id), array('class' => 'btn btn-info')) }} 
 			
 		</tr>
+		@endif
 		@endforeach
 	</tbody>
 	</table>

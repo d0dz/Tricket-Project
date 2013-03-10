@@ -13,6 +13,7 @@ class Create_Crossmapping_Table {
 			$table->increments('id');
 			$table->integer('localcourse_id');
 			$table->integer('intercourse_id');
+			$table->integer('approve');
 			$table->timestamps();
 		});
 	}

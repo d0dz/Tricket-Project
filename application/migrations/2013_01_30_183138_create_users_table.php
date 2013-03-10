@@ -11,8 +11,16 @@ class Create_Users_Table {
 	{
 		Schema::create('users', function($table) {
 			$table->increments('id');
-			$table->string('username',16);
+			$table->text('username',11);
 			$table->string('password',100);
+			$table->integer('university_id');
+			$table->text('name',100);
+			$table->text('course',50);
+			$table->text('major',50);
+			$table->integer('year');
+			$table->text('oldcourse',50);
+			$table->text('oldmajor',50);
+			$table->text('faculty',50);
 			$table->integer('role_id');
 			$table->timestamps();
 		});

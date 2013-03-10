@@ -23,7 +23,7 @@
 					@else
 						@if (Auth::user()->role_id == 2)
 							<li>{{ HTML::link_to_route('localcourses', 'Localcourses') }}</li>
-							<li>{{ HTML::link_to_route('intercourses', 'Intercourses') }}</li>
+							<li>{{ HTML::link_to_route('admin', 'Approve') }}</li>
 							<li>{{ HTML::link_to_route('universities', 'University') }}</li>
 							{{ Form::open('search', 'POST', array('class'=>'navbar-form pull-right','placeholder'=>'ค้นหารายวิชา')) }}
 							{{ Form::token() }}
@@ -32,7 +32,7 @@
 							{{ Form::close() }}
 							<li>{{ HTML::link_to_route('logout', 'Logout ('.Auth::user()->username.')') }}
 						@else
-
+						<li>{{ HTML::link_to_route('intercourses', 'Intercourses') }}</li>
 						<li>{{ HTML::link_to_route('transferlist', 'Tranferslist')}}</li>
 						<li>{{ HTML::link_to_route('logout', 'Logout ('.Auth::user()->username.')') }}</li>
 						@endif

@@ -11,4 +11,8 @@ class Universitie extends Basemodel {
 	public function intercourses() {
 		return $this->has_many('Intercourse');
 	}
+
+	public function users(){
+		 return $this->has_many('User');
+	}
 }

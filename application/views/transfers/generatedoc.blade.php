@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,14 +25,15 @@
 		<div class="row">
 			<CENTER>
 			<div class="span12">
+
 				<h5>
 					ใบแสดงผลการพิจารณาการเทียบวิชาเรียนและโอนหน่วยกิตเบื้องต้น</br>
 					สำหรับหลักสูตรระดับที่ไม่สูงกว่าปริญญาตรีเพื่อเข้าศึกษาในสถาบันอุดมศึกษาเอกชน</br>
-					รหัสนักศึกษา ......................... ชื่อ - สกุล ..............................................................</br>
-					หลักสูตร ............................ สาขาวิชา .................................................
-					 ปีการศึกษา ..................</br>
-					 หลักสูตร .................... จากสถาบัน ................................................. สาขาวิชา .....................................................</br>
-					 คณะอนุกรรมการเทียบรายวิชาและการโอนหน่วยกิตเข้าสู่การศึกษาในระบบ คณะ ....................................
+					รหัสนักศึกษา  ชื่อ - สกุล {{ Auth::user()->name }}</br>
+					หลักสูตร {{ Auth::user()->course }} สาขาวิชา {{ Auth::user()->major }}
+					 ปีการศึกษา {{ Auth::user()->year }}</br>
+					 หลักสูตร {{ Auth::user()->oldcourse }} จากสถาบัน {{ Auth::user()->universitie->name }} สาขาวิชา {{ Auth::user()->oldmajor }}</br>
+					 คณะอนุกรรมการเทียบรายวิชาและการโอนหน่วยกิตเข้าสู่การศึกษาในระบบ คณะ {{ Auth::user()->faculty }}
 				</h5>
 			</div>
 			</CENTER>
@@ -58,16 +61,16 @@
 
 
 
-				@foreach (Auth::user()->user_mapping as $user_mapping)
+				@foreach ($usermapping as $mapping)
 					<tr>
-						<td>{{ $user_mapping->course_mapping->intercourse->code }}</td>
-						<td>{{ $user_mapping->course_mapping->intercourse->title }}</td>
-						<td>{{ $user_mapping->course_mapping->intercourse->credit }}</td>
+						<td>{{ $mapping->course_mapping->intercourse->code }}</td>
+						<td>{{ $mapping->course_mapping->intercourse->intercoursedetail[0]->title }}</td>
+						<td>{{ $mapping->course_mapping->intercourse->intercoursedetail[0]->credit }}</td>
 						<td></td>
 			
-						<td>{{ $user_mapping->course_mapping->localcourse->code }}</td>
-						<td>{{ $user_mapping->course_mapping->localcourse->title }}</td>
-						<td>{{ $user_mapping->course_mapping->localcourse->credit }}</td>
+						<td>{{ $mapping->course_mapping->localcourse->code }}</td>
+						<td>{{ $mapping->course_mapping->localcourse->title }}</td>
+						<td>{{ $mapping->course_mapping->localcourse->credit }}</td>
 						<td></td>
 					</tr>
 				@endforeach

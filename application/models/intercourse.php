@@ -26,5 +26,7 @@ class Intercourse extends Basemodel {
 		return $this->has_many('Coursemapping');
 	}
 
-	
+	public function intercoursedetail(){
+		return $this->has_many('IntercourseDetail');
+	}
 }

@@ -5,11 +5,13 @@ class Intercourses_Controller extends Base_Controller {
 	public $restful = true;
 
 	public function get_index() {
-		if (Auth::check() && Auth::user()->role_id == 2) {
-			$intercourses = DB::table('intercourses')
-				->left_join('universities', 'intercourses.university_id', '=', 'universities.id')
-				->paginate(30, array('title', 'code', 'credit','description','intercourses.id','universities.name'));
-				// ->get(array('title', 'code', 'credit','description','intercourses.id','universities.name'));
+		if (Auth::check() && ( Auth::user()->role_id == 2 || Auth::user()->role_id == 1)) {
+
+			$intercourses = IntercourseDetail::with(array('Intercourse'))->where('user_id','=',Auth::user()->id)->get();
+			// $intercourses = DB::table('intercourses')
+			// 	->left_join('universities', 'intercourses.university_id', '=', 'universities.id')
+			// 	->paginate(30, array('title', 'code', 'credit','description','intercourses.id','universities.name'));
+			// ->get(array('title', 'code', 'credit','description','intercourses.id','universities.name'));
 
 		return View::make('intercourses.index')
 			->with('title', 'รายละเอียดวิชาภายนอกวิทยาลัยบัญฑิตเอเซีย')
@@ -39,13 +41,26 @@ class Intercourses_Controller extends Base_Controller {
 		$validation = Intercourse::validate(Input::all());
 		if ($validation->passes()) {
 			
-			$inter = Intercourse::create(array(
+			$inter = Intercourse::where('code', '=', Input::get('code'))
+			->where('university_id','=',Auth::user()->university_id)
+			->first();
+			if(!isset($inter)){
+				$inter = Intercourse::create(array(
 				'code'=>Input::get('code'),
+				'university_id'=>Input::get('university_id'),
+				'approve'=>0
+				));	
+			}
+
+			IntercourseDetail::create(array(
 				'title'=>Input::get('title'),
 				'credit'=>Input::get('credit'),
 				'description'=>Input::get('description'),
-				'university_id'=>Input::get('university_id')
-			));	
+				'correct'=>0,
+				'user_id'=>Auth::user()->id,
+				'intercourse_id'=>$inter->id
+				));
+			
 
 			$mapid = Input::get('mapid', array());
 
@@ -53,7 +68,8 @@ class Intercourses_Controller extends Base_Controller {
 				DB::table('course_mapping')->insert(
 						array(
 							'intercourse_id' => $inter->id,
-							'localcourse_id' => $id
+							'localcourse_id' => $id,
+							'approve'=>0
 							)
 					);
 			}
@@ -110,8 +126,8 @@ class Intercourses_Controller extends Base_Controller {
 	}
 
 	public function delete_destroy() {
-		Intercourse::find(Input::get('id'))->delete();
-		DB::table('course_mapping')->where('intercourse_id','=',Input::get('id'))->delete();
+		IntercourseDetail::find(Input::get('id'))->delete();
+		// DB::table('course_mapping')->where('intercourse_id','=',Input::get('id'))->delete();
 		return Redirect::to_route('intercourses')
 			->with('message', 'Intercourse Delete Successfully !');
 	}

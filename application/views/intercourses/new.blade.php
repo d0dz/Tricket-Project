@@ -20,11 +20,11 @@
 
 		{{ Form::token() }}
 
-		<P>
-			{{ Form::label('university_id', 'เลือกมหาวิทยาลัย') }}
-			{{ Form::select('university_id', $universities) }}
+		
+		
+			{{ Form::hidden('university_id', Auth::user()->university_id) }}
 			
-		</p>
+		
 
 		<p>
 			{{ Form::label('code', 'รหัสวิชา') }}

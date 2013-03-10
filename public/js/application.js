@@ -32,14 +32,14 @@ $(document).ready(function(){
 
 				// Get one course
 				var course = data[i];
-				var universitie = course.universitie;
+				
 
 				// create list
 				var li = $('<li>');
 				var link = $('<a>').attr('href','./transfers/detail/' + course['id']);
 
 				// combine text
-				var text = course['code'] + ' - ' + course['title'] + ' | ' + universitie['name'];
+				var text = course['code'] + ' - ' + course['intercoursedetail'][0]['title'];
 				link.text(text);
 				li.append(link);
 

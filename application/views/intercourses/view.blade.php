@@ -3,10 +3,10 @@
 @section('content')
 
 			<p></br>
-			ชื่อวิชา :: {{ ($intercourse->title)}}</br>
+			ชื่อวิชา :: {{ ($intercourse->intercoursedetail[0]->title)}}</br>
 			รหัสวิชา :: {{ ($intercourse->code) }}</br>
-			หน่วยกิต :: {{ ($intercourse->credit) }}</br>
-			คำอธิบายรายวิชา :: {{ ($intercourse->description) }}</br>
+			หน่วยกิต :: {{ ($intercourse->intercoursedetail[0]->credit) }}</br>
+			คำอธิบายรายวิชา :: {{ ($intercourse->intercoursedetail[0]->description) }}</br>
 			มหาวิทยาลัย :: {{ ($intercourse->universitie->name) }}</br>
 			</p>
 

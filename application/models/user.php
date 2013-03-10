@@ -3,9 +3,10 @@
 class User extends Basemodel {
 
 	public static $rules = array(
-		'username'=>'required|unique:users|alpha_dash|between:4,16',
+		'username'=>'required|unique:users|alpha_dash|max:11',
 		'password'=>'required|alpha_num|between:4,10|confirmed',
-		'password_confirmation'=>'required|alpha_num|between:4,10'
+		'password_confirmation'=>'required|alpha_num|between:4,10',
+		
 	);
 
 	public function transferlist()
@@ -16,5 +17,13 @@ class User extends Basemodel {
 	public function user_mapping()
 	{
 		return $this->has_many('Usermapping');
+	}
+
+	public function universitie(){
+		return $this->belongs_to('Universitie','university_id');
+	}
+
+	public function intercoursedetail(){
+		return $this->has_many('IntercourseDetail');
 	}
 }

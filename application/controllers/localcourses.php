@@ -98,8 +98,9 @@ class Localcourses_Controller extends Base_Controller {
 			->or_where('code','LIKE', '%' .$keyword. '%')
 			->get();
 			
-		$interresults = DB::table('intercourses')
+		$interresults = DB::table('intercourses') 
 			->join('universities', 'intercourses.university_id', '=', 'universities.id')
+			->join('users', 'intercourses.id', '=', 'users.id')
 			->where('title','LIKE', '%' .$keyword. '%')
 			->or_where('code','LIKE', '%' .$keyword. '%')
 			->get();

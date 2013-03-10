@@ -14,8 +14,10 @@ class Api_Controller extends Base_Controller
 	{
 		$keyword = Input::get('keyword');
 
-		$interresults = Intercourse::with('universitie')->where('title','LIKE', '%' .$keyword. '%')
-			->or_where('code','LIKE', '%' .$keyword. '%')
+		$interresults = Intercourse::with('intercoursedetail')
+			->where('code','LIKE', '%' .$keyword. '%')
+			->where('university_id','=',Auth::user()->university_id)
+			->where('approve','=',1)
 			->get();
 
 		// $interresults = DB::table('intercourses')

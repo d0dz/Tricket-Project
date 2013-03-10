@@ -51,6 +51,7 @@ class Transfers_Controller extends Base_Controller {
 
 	public function get_generate()
 	{
-		return View::make('transfers.generatedoc');
+		$usermapping = Usermapping::with(array('course_mapping'))->where('user_id','=',Auth::user()->id)->get();
+		return View::make('transfers.generatedoc')->with('usermapping',$usermapping);					
 	}
 }

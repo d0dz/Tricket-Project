@@ -4,9 +4,26 @@ class Users_Controller extends Base_Controller {
 
 	public $restful = true;
 
+	public function get_index() {
+		if (Auth::check() && (Auth::user()->role_id==2)){
+			$coursemapping = Coursemapping::where('approve','=',0)->get();
+
+			return View::make('users.admin')
+				->with('title','รอการ approve')
+				->with('coursemapping',$coursemapping);
+		}
+	}
+
 	public function get_new() {
+		$universities = Universitie::all();
+		$universities_data = array();
+		foreach ($universities as $universities){
+			$universities_data[$universities->id] = $universities->name;
+		}
+			
 		return View::make('users.new')
-			->with('title', 'สมัครสมาชิกเพื่อเทียบโอนหน่วยกิต');
+			->with('title', 'สมัครสมาชิกเพื่อเทียบโอนหน่วยกิต')
+			->with('universities', $universities_data);
 	}
 
 	public function post_create() {
@@ -16,6 +33,14 @@ class Users_Controller extends Base_Controller {
 			User::create(array(
 				'username'=>Input::get('username'),
 				'password'=>Hash::make(Input::get('password')),
+				'name'=>Input::get('name'),
+				'course'=>Input::get('course'),
+				'major'=>Input::get('major'),
+				'year'=>Input::get('year'),
+				'university_id'=>Input::get('university_id'),
+				'oldcourse'=>Input::get('oldcourse'),
+				'oldmajor'=>Input::get('oldmajor'),
+				'faculty'=>Input::get('faculty'),
 				'role_id'=>1
 			));
 
@@ -65,7 +90,13 @@ class Users_Controller extends Base_Controller {
 	}
 
 	public function get_transferlist() {
+
+		$usermapping = Usermapping::with(array('course_mapping'))->where('user_id','=',Auth::user()->id)->get();
+
+
+
 		return View::make('users.transferlist')
+			->with('usermapping',$usermapping)
 			->with('title', 'วิชาที่จะเทียบโอน');
 
 	}
@@ -79,6 +110,10 @@ class Users_Controller extends Base_Controller {
 		return Redirect::to_route('transfers_search')
 				->with('message', 'เพิ่มเรียบร้อย');
 	}
+
+
+
+	
 
 	public function delete_destroy() {
 		

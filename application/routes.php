@@ -33,11 +33,14 @@
 */
 
 Route::controller('Api');
-
+Route::controller('Coursemapping');
 Route::get('/', array('as'=>'home', 'uses'=>'transfers@index'));
 Route::get('register', array('as'=>'register', 'uses'=>'users@new'));
 Route::get('login', array('as'=>'login', 'uses'=>'users@login'));
 Route::get('logout', array('as'=>'logout', 'uses'=>'users@logout'));
+
+Route::get('admin', array('as'=>'admin','uses'=>'users@index'));
+
 
 Route::get('localcourses', array('as'=>'localcourses', 'uses'=>'localcourses@index'));
 Route::get('localcourse/(:num)', array('as'=>'localcourse', 'uses'=>'localcourses@view'));
